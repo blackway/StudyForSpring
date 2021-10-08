@@ -36,7 +36,7 @@ dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-websocket:2.5.5'
 	implementation 'org.mybatis.spring.boot:mybatis-spring-boot-starter:2.2.0'
 	implementation 'org.springframework.cloud:spring-cloud-config-server:3.0.5'
-	implementation 'org.springframework.session:spring-session-jdbc:2.5.2'
+	//implementation 'org.springframework.session:spring-session-jdbc:2.5.2' jdbc 연결에서 오류가 나타남
 	compileOnly 'org.projectlombok:lombok:1.18.20'
 	developmentOnly 'org.springframework.boot:spring-boot-devtools:2.5.5'
 	runtimeOnly 'org.mariadb.jdbc:mariadb-java-client:2.7.3'

@@ -1,3 +1,4 @@
+/*
 package com.main.board.TestProject.db.entity;
 
 import lombok.Getter;
@@ -32,4 +33,4 @@ public class UserEntity {
 
     @Column(name = "modifyDate")
     private Instant modifyDate;
-}
+}*/
