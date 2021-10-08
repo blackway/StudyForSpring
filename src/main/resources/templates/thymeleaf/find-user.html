@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>아이디/패스워드 찾기</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js"></script>
+
+    <style>
+
+    </style>
+</head>
+<body class="p-4">
+    <!--margin 속성을 container와 함께 사용하면 반응형 div가 제대로 생성되지 않음
+        body에 padding 속성을 입력하여 해결함.-->
+    <div class="container-sm shadow p-4">
+        <h2 class="text-center">이메일 / 패스워드 찾기</h2>
+
+        <!--nav와 nav-tabs를 함께 사용하면 tab layout을 구성할 수 있음.
+            tab은 ul 태그를 이용하여 구현하며 리스트 아이템 하나하나가 탭임.-->
+        <ul class="nav nav-tabs mt-4" role="tablist">
+            <li class="nav-item">
+                <!--nav-link를 이용하여 tab 내부 content를 구성하는 div를 연결 할 수 있음.-->
+                <a id="findEmailItem" class="nav-link active" data-bs-toggle="tab" href="#find-email-tab">이메일 찾기</a>
+            </li>
+            <li class="nav-item">
+                <a id="findPasswordItem" class="nav-link" data-bs-toggle="tab" href="#find-password-tab">패스워드 찾기</a>
+            </li>
+        </ul>
+
+        <!--tab 내부 content임.-->
+        <div class="tab-content">
+            <div id="find-email-tab" class="container tab-pane active">
+                <br>
+                <div class="mb-3">
+                    <label for="inputName" class="form-label">이름</label>
+                    <input type="text" class="form-control" id="inputName" placeholder="(예, 홍길동)" aria-describedby="nameHelp">
+                    <div id="nameHelp" class="form-text">가입시 사용한 이름을 입력하여 주세요.</div>
+                </div>
+                <div class="mb-5">
+                    <label for="inputPhone" class="form-label">휴대전화</label>
+                    <input type="number" class="form-control" id="inputPhone" placeholder="숫자만 허용 (예, 01012341111)" aria-describedby="phoneHelp">
+                    <div id="phoneHelp" class="form-text">가입시 사용한 전화번호를 입력하여 주세요.</div>
+                </div>
+                <div class="d-grid gap-2">
+                    <button id="searchButton" class="btn btn-primary" type="button" onclick="findEmail(this)">확인</button>
+                </div>
+            </div>
+            <div id="find-password-tab" class="container tab-pane fade">
+                <br>
+                <div class="mb-5">
+                    <label for="inputEmail" class="form-label">이메일</label>
+                    <input type="email" class="form-control" id="inputEmail" placeholder="(예, example@domain)" aria-describedby="emailHelp">
+                    <div id="emailHelp" class="form-text">가입시 사용한 이메일을 입력하여 주세요.</div>
+                </div>
+                <div class="d-grid gap-2">
+                    <button id="verifyEmailButton" class="btn btn-primary" type="button" onclick="verifyEmail(this)">확인</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="progressSection" style="z-index: 1; background-color: rgba(0,0,0,0.51); position: absolute; top: 0; left: 0; width: 100%; height: 100%; display: none">
+        <div class="progress" style="width: 100px; position: absolute; top: calc(50% - 15px); left: calc(50% - 50px);">
+            <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width: 100%;"></div>
+        </div>
+    </div>
+
+    <script>
+        async function findEmail(e){
+            const inputName = document.getElementById("inputName");
+            const inputPhone = document.getElementById("inputPhone");
+
+            const name = inputName.value;
+            const phone = inputPhone.value;
+
+            /*
+            Step 1. Progress 활성화 및 Control disable
+            Step 2. name과 phone 값이 비어있지 않은지 혹은 정규식을 만족하였는 지 확인.
+            Step 3. name과 phone 값으로 DB에 회원 정보를 찾기
+            Step 4-1. 찾았으면 이메일의 일부를 지우고 보여주기
+            Step 4-2. 못찾았으면 없는 회원임을 명시하기
+            Step 5. Progress 비활성화 및 Control Enable
+             */
+            progressSectionToggle();
+            //do Step2
+            //do Step3
+            //if Step 4-1
+            setTimeout(() => {
+                alert("이메일 : exa**e@**main.com")
+                inputName.value = ""
+                inputPhone.value = ""
+                progressSectionToggle();
+            }, 3000);
+            //if Step 4-2
+            //do Step 4-2
+        }
+
+        async function verifyEmail(e){
+            const inputEmail = document.getElementById("inputEmail");
+
+            const email = inputEmail.value;
+
+            /*
+            Step 1. Progress 활성화 및 Control disable
+            Step 2. email값이 비어있지 않은지 혹은 정규식을 만족하였는 지 확인.
+            Step 3. email값으로 DB에 회원 정보를 찾기
+            Step 4-1. 찾았으면 임시 패스워드를 회원 이메일로 송부
+            Step 4-2. 못찾았으면 없는 회원임을 명시하기
+            Step 5. Progress 비활성화 및 Control Enable
+             */
+            progressSectionToggle();
+            //do Step2
+            //do Step3
+            //if Step 4-1
+            setTimeout(() => {
+                alert("알림 : 회원님 메일로 임시 패스워드가 발송되었습니다.")
+                email.value = ""
+                progressSectionToggle();
+            }, 3000);
+            //if Step 4-2
+            //do Step 4-2
+        }
+
+        function progressSectionToggle(){
+            const progressSection = document.getElementById("progressSection");
+            if(progressSection.style.display === "none"){
+                progressSection.style.display = "block";
+            }else{
+                progressSection.style.display = "none";
+            }
+        }
+    </script>
+</body>
+</html>

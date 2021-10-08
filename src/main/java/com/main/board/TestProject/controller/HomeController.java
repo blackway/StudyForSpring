@@ -12,4 +12,9 @@ public class HomeController {
 
         return "thymeleaf/login";
     }
+
+    @RequestMapping(value = "/find-user")
+    public String FindUser(){
+        return "thymeleaf/find-user";
+    }
 }
